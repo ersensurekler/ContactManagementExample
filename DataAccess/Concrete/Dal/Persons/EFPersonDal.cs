@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.Dal.Persons
 {
-    internal class EFPersonDal
+    public class EFPersonDal
     {
     }
 }
