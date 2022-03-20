@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.Dtos.Contacts
 {
-    public class ContactDto
+    public class PersonDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

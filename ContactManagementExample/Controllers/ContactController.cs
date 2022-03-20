@@ -1,4 +1,7 @@
 ﻿using Business.Interfaces.Contacts;
+using Entities.Concrete.Contacts;
+using Entities.Concrete.Persons;
+using Entities.Dtos.Contacts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -19,11 +22,21 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _contactService.GetById(id);
+            var contact = await _contactService.GetById(id);
+            if (!contact.Success)
+                return BadRequest(contact.Message);
+
+            return Ok(contact.Data);
+        }
+
+        [HttpPost("save-person")]
+        public async Task<IActionResult> Save(Person person)
+        {
+            var result = await _contactService.Save(person);
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            return Ok(result.Data);
+            return Ok();
         }
     }
 }
