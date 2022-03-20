@@ -9,7 +9,7 @@ namespace API.Controllers
     [ApiController]
     public class ContactController : BaseController
     {
-        private IContactService _contactService;
+        private readonly IContactService _contactService;
         public ContactController(
             IContactService contactService)
         {
