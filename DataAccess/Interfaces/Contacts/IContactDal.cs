@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Interface.Contacts
+namespace DataAccess.Interfaces.Contacts
 {
     public interface IContactDal: IEntityRepository<Contact>
     {

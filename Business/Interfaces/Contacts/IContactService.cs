@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Interface.Contacts
+namespace Business.Interfaces.Contacts
 {
     public interface IContactService
     {

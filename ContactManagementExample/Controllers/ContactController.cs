@@ -1,4 +1,4 @@
-﻿using Business.Interface.Contacts;
+﻿using Business.Interfaces.Contacts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

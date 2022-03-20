@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework.Mapping.Contacts
     {
         public void Configure(EntityTypeBuilder<Contact> builder)
         {
-            builder.HasKey(b=>b.Id);
+            builder.HasKey(b => b.Id);
             builder.Property(b => b.PersonId);
             builder.Property(b => b.InfoType);
             builder.Property(b => b.Info);

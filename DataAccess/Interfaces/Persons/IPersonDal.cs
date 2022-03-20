@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Interface.Persons
+namespace DataAccess.Interfaces.Persons
 {
     public interface IPersonDal: IEntityRepository<Person>
     {

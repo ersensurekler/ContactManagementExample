@@ -12,6 +12,5 @@ namespace Entities.Concrete.Contacts
         public Guid PersonId { get; set; }
         public int InfoType { get; set; }
         public string Info { get; set; }
-        public virtual ICollection<Person> Persons { get; set; }
     }
 }

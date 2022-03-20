@@ -148,18 +148,7 @@ namespace Core.DataAccess.EF
         {
             await _dbSet.BulkInsertAsync(entities);
         }
-        /// <summary>
-        ///Örnek Kod
-        ///BulkInsertAsync(items,
-        ///options => options.PostConfiguration = bulk =>
-        ///{
-        ///     bulk.ColumnMappings.Single(x => x.SourceName == "Id").IsIdentity = true;
-        ///}
-        ///);
-        /// </summary>
-        /// <param name="entities"></param>
-        /// <param name="keyOptions"></param>
-        /// <returns></returns>
+
         public async Task BulkInsertAsync(ICollection<TEntity> entities, Action<BulkOperation<TEntity>> keyOptions)
         {
             await _dbSet.BulkInsertAsync(entities, keyOptions);

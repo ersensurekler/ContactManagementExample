@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Business.Interface.Contacts;
+using Business.Interfaces.Contacts;
 using Core.Utilities.Results;
-using DataAccess.Interface.Contacts;
+using DataAccess.Interfaces.Contacts;
 using Entities.Dtos.Contacts;
 using System;
 using System.Collections.Generic;

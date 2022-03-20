@@ -1,5 +1,5 @@
 ﻿using DataAccess.Concrete.Dal.Contacts;
-using DataAccess.Interface.Contacts;
+using DataAccess.Interfaces.Contacts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

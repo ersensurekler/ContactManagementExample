@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess.EF;
 using DataAccess.Concrete.EntityFramework.Context;
-using DataAccess.Interface.Persons;
+using DataAccess.Interfaces.Persons;
 using Entities.Concrete.Persons;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.Dal.Persons
 {
     public class EFPersonDal : EFEntityRepositoryBase<Person>, IPersonDal
     {
-        protected EFPersonDal(ContactManagementContext dbContext) : base(dbContext)
+        public EFPersonDal(ContactManagementContext dbContext) : base(dbContext)
         {
         }
     }
