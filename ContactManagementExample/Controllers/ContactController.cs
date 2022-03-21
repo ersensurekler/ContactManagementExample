@@ -72,5 +72,25 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        [HttpPost("delete-person")]
+        public async Task<IActionResult> DeleteContact(PersonDto person)
+        {
+            var result = await _personService.Delete(person);
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok();
+        }
+
+        [HttpPost("delete-contact")]
+        public async Task<IActionResult> DeleteContact(ContactDto contact)
+        {
+            var result = await _contactService.Delete(contact);
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok();
+        }
     }
 }

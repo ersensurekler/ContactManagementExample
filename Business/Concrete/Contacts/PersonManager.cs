@@ -30,6 +30,36 @@ namespace Business.Concrete.Contacts
             _contactService = contactService;
         }
 
+        public async Task<IResult> Delete(PersonDto person)
+        {
+            try
+            {
+                await _personDal.CurrentContext.Database.BeginTransactionAsync();
+
+                var mappedPerson = _mapper.Map<Person>(person);
+                await _personDal.Delete(mappedPerson);
+
+                foreach (var contact in person.Contacts)
+                {
+                    var result = await _contactService.Delete(contact);
+
+                    if (!result.Success)
+                    {
+                        throw new Exception(result.Message);
+                    }
+                }
+
+                await _personDal.CurrentContext.Database.CommitTransactionAsync();
+
+                return new SuccessResult(Messages.Success_Deleted);
+            }
+            catch (Exception ex)
+            {
+                await _personDal.CurrentContext.Database.RollbackTransactionAsync();
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         public async Task<IDataResult<ICollection<PersonDto>>> Get()
         {
             var person = await _personDal.Queryable()

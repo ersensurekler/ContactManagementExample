@@ -13,6 +13,7 @@ namespace Business.Interfaces.Contacts
     {
         Task<IDataResult<ContactDto>> GetById(Guid id);
         Task<IResult> Save(ContactDto contact);
+        Task<IResult> Delete(ContactDto contact);
         Task<IDataResult<ICollection<ContactDto>>> GetByPersonId(Guid personId);
     }
 }

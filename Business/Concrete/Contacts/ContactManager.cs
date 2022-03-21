@@ -29,6 +29,21 @@ namespace Business.Concrete.Contacts
             _contactDal = contactDal;
         }
 
+        public async Task<IResult> Delete(ContactDto contact)
+        {
+            try
+            {
+                var mappedContact = _mapper.Map<Contact>(contact);
+                await _contactDal.Delete(mappedContact);
+
+                return new SuccessResult(Messages.Success_Deleted);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         public async Task<IDataResult<ContactDto>> GetById(Guid id)
         {
             var contact = await _contactDal.Queryable()
