@@ -20,15 +20,12 @@ namespace Business.Concrete.Contacts
     {
         private readonly IMapper _mapper;
         private readonly IContactDal _contactDal;
-        private readonly IPersonDal _personDal;
 
         public ContactManager(
             IMapper mapper,
-            IPersonDal personDal,
             IContactDal contactDal)
         {
             _mapper = mapper;
-            _personDal = personDal;
             _contactDal = contactDal;
         }
 
