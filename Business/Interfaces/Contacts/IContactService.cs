@@ -1,4 +1,5 @@
 ﻿using Core.Utilities.Results;
+using Entities.Concrete.Contacts;
 using Entities.Concrete.Persons;
 using Entities.Dtos.Contacts;
 using System;
@@ -10,7 +11,8 @@ namespace Business.Interfaces.Contacts
 {
     public interface IContactService
     {
-        Task<IDataResult<PersonDto>> GetById(int id);
-        Task<IResult> Save(Person person);
+        Task<IDataResult<ContactDto>> GetById(Guid id);
+        Task<IResult> Save(ContactDto contact);
+        Task<IDataResult<ICollection<ContactDto>>> GetByPersonId(Guid personId);
     }
 }

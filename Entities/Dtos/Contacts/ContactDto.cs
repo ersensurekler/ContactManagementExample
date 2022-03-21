@@ -7,9 +7,8 @@ namespace Entities.Dtos.Contacts
     public class ContactDto
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Company { get; set; }
-        public virtual ICollection<ContactDto> Contacts { get; set; }
+        public Guid PersonId { get; set; }
+        public int InfoType { get; set; }
+        public string Info { get; set; }
     }
 }

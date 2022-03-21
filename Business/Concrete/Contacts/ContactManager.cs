@@ -4,10 +4,13 @@ using Business.Interfaces.Contacts;
 using Core.Utilities.Results;
 using DataAccess.Interfaces.Contacts;
 using DataAccess.Interfaces.Persons;
+using Entities.Concrete.Contacts;
 using Entities.Concrete.Persons;
 using Entities.Dtos.Contacts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,18 +32,30 @@ namespace Business.Concrete.Contacts
             _contactDal = contactDal;
         }
 
-        public async Task<IDataResult<PersonDto>> GetById(int id)
+        public async Task<IDataResult<ContactDto>> GetById(Guid id)
         {
-            var contact = await _personDal.GetByIdAsync(id);
+            var contact = await _contactDal.Queryable()
+                .Where(t => t.Id == id)
+                .ToListAsync();
 
-            return new SuccessDataResult<PersonDto>(_mapper.Map<PersonDto>(contact));
+            return new SuccessDataResult<ContactDto>(_mapper.Map<ContactDto>(contact));
         }
 
-        public async Task<IResult> Save(Person person)
+        public async  Task<IDataResult<ICollection<ContactDto>>> GetByPersonId(Guid personId)
+        {
+            var contacts = await _contactDal.Queryable()
+                .Where(t => t.PersonId == personId)
+                .ToListAsync();
+
+            return new SuccessDataResult<ICollection<ContactDto>>(_mapper.Map<ICollection<ContactDto>>(contacts));
+        }
+
+        public async Task<IResult> Save(ContactDto contact)
         {
             try
             {
-                await _personDal.Add(person);
+                var mappedContact = _mapper.Map<Contact>(contact);
+                await _contactDal.Add(mappedContact);
 
                 return new SuccessResult(Messages.Success_Added);
             }
@@ -48,7 +63,6 @@ namespace Business.Concrete.Contacts
             {
                 return new ErrorResult(ex.Message);
             }
-
         }
     }
 }
