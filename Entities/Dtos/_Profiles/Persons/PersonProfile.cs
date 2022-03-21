@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Entities.Concrete.Persons;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Entities.Dtos.Contacts;
 
 namespace Entities.Dtos._Profiles.Persons
 {
@@ -10,7 +8,7 @@ namespace Entities.Dtos._Profiles.Persons
     {
         public PersonProfile()
         {
-            //CreateMap<Person, PersonDto>();
+            CreateMap<Person, PersonDto>().ReverseMap();
         }
     }
 }
