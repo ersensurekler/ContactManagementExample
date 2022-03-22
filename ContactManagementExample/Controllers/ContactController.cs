@@ -23,15 +23,15 @@ namespace API.Controllers
             _contactService = contactService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var persons = await _personService.Get();
-            if (!persons.Success)
-                return BadRequest(persons.Message);
+        //[HttpGet]
+        //public async Task<IActionResult> Get()
+        //{
+        //    var persons = await _personService.Get();
+        //    if (!persons.Success)
+        //        return BadRequest(persons.Message);
 
-            return Ok(persons.Data);
-        }
+        //    return Ok(persons.Data);
+        //}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)

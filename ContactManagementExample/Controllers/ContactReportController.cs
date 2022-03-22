@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Interfaces.ContactReports;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -7,9 +9,21 @@ namespace API.Controllers
     [ApiController]
     public class ContactReportController : BaseController
     {
-        public IActionResult Index()
+        private readonly IContactReportService _contactReportService;
+        public ContactReportController(
+            IContactReportService contactReportService)
         {
-            return null;
+            _contactReportService = contactReportService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var persons = await _contactReportService.GetAllReportSend();
+            if (!persons.Success)
+                return BadRequest(persons.Message);
+
+            return Ok();
         }
     }
 }
