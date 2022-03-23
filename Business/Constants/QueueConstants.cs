@@ -11,6 +11,6 @@ namespace Business.Constants
         public const string QueuePassword = "";
         public const int QueuePort = 0;
 
-        public const string ReportQueue = "report.queue";
+        public const string ReportQueue = "reportQueue";
     }
 }

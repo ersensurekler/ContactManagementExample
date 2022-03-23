@@ -16,11 +16,13 @@ namespace Business.Concrete.ContactReports
         private readonly IContactReportQueueService _contactReportQueueService;
         private readonly IPersonService _personService;
         public ContactReportManager(
+            IBus bus,
             IContactReportQueueService contactReportQueueService,
             IPersonService personService)
         {
             _contactReportQueueService = contactReportQueueService;
             _personService = personService;
+            _bus = bus;
         }
 
         public async Task<IResult> GetAllReportSend()
@@ -33,7 +35,7 @@ namespace Business.Concrete.ContactReports
             //var persons = await _personService.Get();
             //_contactReportQueueService.Send(QueueConstants.ReportQueue, persons);
 
-            Uri uri = new Uri("rabbitmq://localhost/ticketQueue");
+            Uri uri = new Uri(QueueConstants.QueueHostName);
             var endPoint = await _bus.GetSendEndpoint(uri);
             await endPoint.Send(contactReportRequestDto);
 

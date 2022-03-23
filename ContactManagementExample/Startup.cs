@@ -1,6 +1,7 @@
 using Business.DependencyResolvers.NetCore;
 using DataAccess.Concrete.EntityFramework.Context;
 using Entities.DependencyResolvers.NetCore;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,10 @@ namespace ContactManagementExample
                 optionsBuilder.UseNpgsql(connectionString);
                 return new ContactManagementContext(optionsBuilder.Options);
             };
+
+            
+            services.AddMassTransitHostedService();
+
 
             services.AddControllers();
 
